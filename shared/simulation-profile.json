@@ -1,0 +1,55 @@
+{
+  "version": "20260317-alpha",
+  "simulationName": "cortex-holograma",
+  "defaults": {
+    "nodeCount": 180,
+    "synapseDensity": 0.3,
+    "learningRate": 0.08,
+    "decayRate": 0.94,
+    "pruningRate": 0.002,
+    "waveSpeed": 1.15,
+    "beamIntensity": {
+      "object": 1.0,
+      "reference": 0.72
+    },
+    "memoryThreshold": 0.62,
+    "synchronizationGain": 0.18,
+    "clusterStability": 0.78,
+    "cameraMode": "orbital",
+    "renderQuality": "high",
+    "radius": 5.9,
+    "latLines": 22,
+    "lonLines": 30,
+    "connectionDistance": 2.65
+  },
+  "systemModes": [
+    "idle",
+    "processing",
+    "learning",
+    "stress"
+  ],
+  "scenes": {
+    "sphere": {
+      "label": "Esfera 3D",
+      "description": "Campo holografico distribuido com atividade cortical superficial."
+    },
+    "pulses": {
+      "label": "Rede com pulsos",
+      "description": "Conectoma com propagacao intensa de ondas e cascatas luminosas."
+    },
+    "xor": {
+      "label": "Rede aprendendo XOR",
+      "description": "Camada experimental para visualizar treinamento e ajuste de pesos."
+    }
+  },
+  "beams": {
+    "object": {
+      "label": "sensory-input",
+      "color": "#69d7ff"
+    },
+    "reference": {
+      "label": "reference-beam",
+      "color": "#b66dff"
+    }
+  }
+}

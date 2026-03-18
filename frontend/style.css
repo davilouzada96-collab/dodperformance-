@@ -1,0 +1,271 @@
+:root {
+  --bg-1: #030712;
+  --bg-2: #061020;
+  --card: rgba(9, 18, 34, 0.82);
+  --line: rgba(130, 160, 220, 0.35);
+  --txt: #e7eefc;
+  --muted: #95a4bf;
+  --blue: #42a5ff;
+  --red: #ff6b7a;
+  --yellow: #ffd46a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--txt);
+  background:
+    radial-gradient(circle at 12% 20%, #12213f 0%, transparent 35%),
+    radial-gradient(circle at 80% 0%, #0f1c34 0%, transparent 45%),
+    linear-gradient(160deg, var(--bg-1), var(--bg-2));
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.3rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(4, 8, 18, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.brand .kicker {
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.brand h1 {
+  margin: 0.2rem 0;
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+}
+
+.brand p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.controls select,
+.controls input,
+.controls button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(7, 12, 23, 0.8);
+  color: var(--txt);
+  padding: 0.5rem 0.7rem;
+}
+
+.controls input {
+  min-width: 180px;
+}
+
+.controls button {
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+
+.controls button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(116, 157, 238, 0.78);
+}
+
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr minmax(230px, 280px);
+  gap: 0.9rem;
+  padding: 0.9rem;
+  min-height: 0;
+}
+
+.viewport,
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+#holoCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.legend {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.9rem;
+  font-size: 0.78rem;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  background: rgba(2, 5, 13, 0.66);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.blue {
+  background: var(--blue);
+}
+
+.dot.red {
+  background: var(--red);
+}
+
+.dot.yellow {
+  background: var(--yellow);
+}
+
+.panel {
+  padding: 0.9rem;
+  overflow: auto;
+}
+
+.panel h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+}
+
+dl {
+  margin: 0;
+}
+
+dt {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.56rem;
+}
+
+dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.95rem;
+}
+
+pre {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(6, 10, 19, 0.82);
+  padding: 0.6rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.8rem 0;
+}
+
+.info {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.brain-detail {
+  margin-top: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(7, 12, 23, 0.78);
+  padding: 0.7rem;
+}
+
+.brain-detail h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.93rem;
+  color: #dce9ff;
+}
+
+.brain-detail p {
+  margin: 0.35rem 0;
+  font-size: 0.84rem;
+  line-height: 1.38;
+  color: #c0d0eb;
+}
+
+.brain-slot {
+  margin-top: 0.62rem;
+  border: 1px solid rgba(124, 154, 210, 0.26);
+  border-radius: 10px;
+  background: rgba(8, 14, 28, 0.62);
+  padding: 0.55rem;
+}
+
+.brain-slot h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aecdff;
+}
+
+.brain-actions {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.brain-actions button {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(8, 14, 28, 0.86);
+  color: var(--txt);
+  padding: 0.45rem 0.55rem;
+  font-size: 0.78rem;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.brain-actions button:hover {
+  border-color: rgba(118, 176, 255, 0.8);
+}
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .viewport {
+    min-height: 58vh;
+  }
+}

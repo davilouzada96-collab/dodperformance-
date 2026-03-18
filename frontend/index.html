@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOD Holograma - Neuro</title>
+  <link rel="stylesheet" href="./style.20260316-1310.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="kicker">DOD PERFORMANCE</span>
+      <h1>CORTEX HOLOGRAMA</h1>
+      <p>FastAPI + Three.js e modo Three.js puro</p>
+    </div>
+    <div class="controls">
+      <label>
+        Cena
+        <select id="sceneSelect">
+          <option value="sphere">Esfera 3D</option>
+          <option value="pulses">Rede com pulsos</option>
+          <option value="xor">Rede aprendendo XOR</option>
+        </select>
+      </label>
+      <label>
+        Fonte
+        <select id="dataModeSelect">
+          <option value="api">FastAPI</option>
+          <option value="pure">Three.js puro</option>
+        </select>
+      </label>
+      <label>
+        Gestos
+        <select id="gestureModeSelect">
+          <option value="ws">WebSocket</option>
+          <option value="off">Desligado</option>
+        </select>
+      </label>
+      <label>
+        Mapa
+        <select id="mapModeSelect">
+          <option value="anatomical">Anatomico</option>
+          <option value="functional">Funcional</option>
+          <option value="brodmann">Brodmann</option>
+          <option value="pathways">Vias neurais</option>
+        </select>
+      </label>
+      <button id="rebuildBtn" type="button">reconstruir</button>
+      <button id="pauseBtn" type="button">pausar</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="viewport">
+      <canvas id="holoCanvas"></canvas>
+      <div id="labelLayer" class="label-layer"></div>
+      <div class="legend">
+        <span class="dot blue"></span>esfera/rede
+        <span class="dot red"></span>xor
+        <span class="dot yellow"></span>pulso
+      </div>
+    </section>
+    <aside class="panel">
+      <h2>Estado</h2>
+      <dl>
+        <dt>Cena atual</dt>
+        <dd id="statusScene">-</dd>
+        <dt>Fonte</dt>
+        <dd id="statusMode">-</dd>
+        <dt>Gestos</dt>
+        <dd id="statusGesture">-</dd>
+        <dt>Regiao</dt>
+        <dd id="statusRegion">-</dd>
+        <dt>Mapa</dt>
+        <dd id="statusMap">-</dd>
+        <dt>Campo global</dt>
+        <dd id="statusGlobal">-</dd>
+        <dt>Loss XOR</dt>
+        <dd id="statusLoss">-</dd>
+        <dt>Passos XOR</dt>
+        <dd id="statusSteps">-</dd>
+      </dl>
+      <pre id="statusPredictions">predicoes: -</pre>
+      <pre id="gestureDebug">gesture: aguardando ponte</pre>
+      <section id="regionDetail" class="brain-detail">
+        <h3>Atlas cortical</h3>
+        <p id="regionName">Nenhuma regiao em foco.</p>
+        <p id="regionMeta">Funcao: -</p>
+        <p id="regionClinical">Clinica: -</p>
+      </section>
+      <p id="statusInfo" class="info">
+        Pronto para iniciar.
+      </p>
+    </aside>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="./js/holograma-config.js"></script>
+  <script src="./js/holograma-core.js"></script>
+  <script src="./js/holograma-app.js"></script>
+</body>
+</html>
