@@ -49,6 +49,27 @@ body {
   color: var(--muted);
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.brand-logo {
+  width: clamp(72px, 9vw, 126px);
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+  filter:
+    drop-shadow(0 0 18px rgba(255, 126, 36, 0.18))
+    drop-shadow(0 0 28px rgba(255, 255, 255, 0.08));
+}
+
 .brand h1 {
   margin: 0.2rem 0;
   font-size: clamp(1.3rem, 2.2vw, 2rem);
@@ -317,5 +338,18 @@ pre {
 
   .viewport {
     min-height: 58vh;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .brand-lockup {
+    align-items: flex-start;
+  }
+
+  .brand-logo {
+    width: clamp(68px, 18vw, 96px);
   }
 }
