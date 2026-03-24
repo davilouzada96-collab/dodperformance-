@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06070B" />
+  <title>DOD Performance</title>
+  <meta name="description" content="DOD Performance: neuro, physio, sport. Feed minimal com dock de posts." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://dodperformance.com.br/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DOD Performance" />
+  <meta property="og:description" content="Neuro, physio e sport em feed visual minimalista." />
+  <meta property="og:url" content="https://dodperformance.com.br/" />
+
+  <link rel="stylesheet" href="/style.20260304.4.css" />
+  <style>
+    .bottom-nav {
+      background: rgba(10, 10, 20, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+    }
+    .nav-item { position: relative; }
+    .nav-item::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .nav-item:hover::before { opacity: 1; }
+    .dock .nav-item[data-section="neuro"].active { color: #7C3AED; }
+    .dock .nav-item[data-section="physio"].active { color: #2563EB; }
+    .dock .nav-item[data-section="sport"].active { color: #16A34A; }
+    .dock .nav-item[data-section="health"].active { color: #DC2626; }
+    .nav-item.active .nav-icon {
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 4px 12px;
+      transform: translateY(-2px);
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="#">
+        <div class="avatar">
+          <img src="/assets/profile.jpg" alt="DOD Profile">
+        </div>
+        <div>
+          <strong>DOD PERFORMANCE</strong>
+          <span>neuro • physio • sport</span>
+        </div>
+      </a>
+
+      <div class="mini-actions">
+        <div id="status">mesh-live v2</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero-shell" aria-label="Leitura científica e contexto editorial">
+      <section class="hero hero-document" aria-label="Imagem em rotação">
+        <div class="img on" id="slide0"></div>
+        <div class="img" id="slide1"></div>
+
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-kicker">Projeto original • leitura aplicada</div>
+            <div class="title" id="slideTitle">NEUROCIENCIA</div>
+            <div class="desc" id="slideDesc">Sinapse, rede e foco como linguagem de estudo, documentacao e traducao pratica.</div>
+          </div>
+          <div class="hero-right">
+            <button class="btn" id="shuffleBtn" type="button">alternar painel</button>
+            <button class="btn" id="pauseBtn" type="button">congelar leitura</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="paper-panel" aria-label="Painel documental"></aside>
+    </section>
+
+    <div class="bar">
+      <div class="search" role="search" aria-label="Buscar no feed">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" placeholder="Buscar em notas, fisiologia, sinapse, protocolos..." />
+      </div>
+
+      <div class="chips" aria-label="Filtros">
+        <button class="chip active" data-filter="all" type="button">Tudo</button>
+        <button class="chip" data-filter="neuro" type="button">Neuro</button>
+        <button class="chip" data-filter="physio" type="button">Physio</button>
+        <button class="chip" data-filter="sport" type="button">Sport</button>
+        <button class="chip" data-filter="homeo" type="button">Homeostase</button>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <section class="grid" id="cardsGrid"></section>
+
+    <section id="feed" class="masonry" aria-label="Feed minimal estilo Pinterest">
+      <!-- cards via JS -->
+    </section>
+
+    <!-- =========================
+         SINAPSE, REDE E FOCO (Hodgkin & Huxley, 1952)
+         Inline (B) + Modal (A)
+    ========================= -->
+    <section id="hh-inline" class="hh-inline" hidden aria-label="Base científica: Hodgkin & Huxley 1952">
+      <div class="hh-top">
+        <div class="hh-top-left">
+          <div class="hh-badge">NEURO • SCIENCE • DOD</div>
+          <h2 class="hh-title">Sinapse, Rede e Foco</h2>
+          <p class="hh-sub">A dinâmica elétrica da excitação neuronal: o “código” bioelétrico de Na+ e K+.</p>
+        </div>
+
+        <div class="hh-top-right">
+          <button class="hh-btn" type="button" data-hh-open-modal>fonte científica</button>
+          <button class="hh-btn ghost" type="button" data-hh-toggle-read>ler</button>
+          <button class="hh-btn ghost" type="button" data-hh-close-inline>fechar</button>
+        </div>
+      </div>
+
+      <div class="hh-media">
+        <figure class="hh-fig">
+          <img src="/assets/hh-ap-wave.png" alt="Potencial de ação propagando ao longo do axônio" />
+          <figcaption>Potencial de ação: Na+ sobe rápido (despolariza), K+ domina depois (repolariza).</figcaption>
+        </figure>
+
+        <figure class="hh-fig">
+          <img src="/assets/hh-neuron.png" alt="Neurônio: dendritos, soma, axônio e sinapse" />
+          <figcaption>Estrutura do neurônio: soma integra, axônio conduz, sinapse distribui em rede.</figcaption>
+        </figure>
+      </div>
+
+      <div class="hh-tags">
+        <span class="hh-tag">NEURO</span>
+        <span class="hh-tag">SCIENCE</span>
+      </div>
+
+      <div class="hh-text">
+        <h3 class="hh-h3">Base neurofisiológica da excitação neural</h3>
+        <p>
+          Hodgkin & Huxley (1952) estabeleceram um modelo quantitativo para explicar como correntes iônicas atravessam
+          a membrana durante o potencial de ação e como isso se aplica à condução nervosa. Esse trabalho virou a base
+          da eletrofisiologia moderna e da modelagem de excitabilidade neuronal.
+        </p>
+
+        <div class="hh-readmore" hidden>
+          <h3 class="hh-h3">Mecanismo fisiológico</h3>
+          <p>
+            A excitação começa com despolarização: a membrana atinge limiar e canais de Na+ dependentes de voltagem
+            aumentam rapidamente a condutância, gerando o “upstroke” do potencial de ação. Em seguida, a condutância
+            de K+ cresce e promove repolarização e pós-hiperpolarização. O período refratário ajusta a frequência de
+            disparo e a direção efetiva da propagação.
+          </p>
+
+          <h3 class="hh-h3">Condução ao longo do axônio</h3>
+          <p>
+            O potencial de ação é uma onda regenerativa: cada segmento de membrana que atinge limiar recruta
+            novos canais e “passa o sinal adiante”. Em axônios mielinizados, a condução tende a se concentrar
+            em regiões nodais, aumentando velocidade e eficiência.
+          </p>
+
+          <h3 class="hh-h3">Sinapse, rede e foco</h3>
+          <p>
+            Em redes neurais, foco envolve controle fino de excitabilidade: limiar, refratariedade, ganho sináptico
+            e sincronização. Pequenas mudanças nesses parâmetros alteram padrões de disparo, filtragem sensorial,
+            estabilidade do circuito e alocação de atenção. Em outras palavras: foco é também um estado bioelétrico.
+          </p>
+
+          <h3 class="hh-h3">Referência clássica</h3>
+          <p class="hh-ref">
+            Hodgkin AL, Huxley AF (1952). <em>A Quantitative Description of Membrane Current and Its Application to Conduction and Excitation in Nerve</em>.
+            <span>The Journal of Physiology</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal (A) -->
+  <div class="hh-modal" hidden role="dialog" aria-modal="true" aria-label="Fonte científica: Hodgkin & Huxley 1952">
+    <button class="hh-backdrop" type="button" aria-label="Fechar" data-hh-close-modal></button>
+
+    <div class="hh-panel" role="document">
+      <div class="hh-panel-top">
+        <div>
+          <div class="hh-badge">NEURO • SCIENCE • DOD</div>
+          <h2 class="hh-title">Hodgkin & Huxley (1952)</h2>
+          <p class="hh-sub">Descrição quantitativa da corrente de membrana aplicada à condução e excitação.</p>
+        </div>
+
+        <button class="hh-x" type="button" aria-label="Fechar modal" data-hh-close-modal>✕</button>
+      </div>
+
+      <div class="hh-panel-body">
+        <div class="hh-media">
+          <figure class="hh-fig">
+            <img src="/assets/hh-ap-wave.png" alt="Potencial de ação propagando" />
+            <figcaption>Dinâmica Na+/K+ molda o spike e define excitabilidade.</figcaption>
+          </figure>
+
+          <figure class="hh-fig">
+            <img src="/assets/hh-neuron.png" alt="Neurônio e sinapse" />
+            <figcaption>Da membrana ao circuito: condução e sinapse viram linguagem de rede.</figcaption>
+          </figure>
+        </div>
+
+        <div class="hh-panel-cards">
+          <article class="hh-card">
+            <h3>Por que é o pilar</h3>
+            <p>
+              O modelo conecta biologia (canais iônicos) e matemática (condutâncias e tempo), explicando disparo,
+              propagação e padrões de excitabilidade. É base para entender circuitos e neurocomputação biológica.
+            </p>
+          </article>
+
+          <article class="hh-card">
+            <h3>Conexão com foco</h3>
+            <p>
+              Atenção emerge de redes que regulam ganho e sincronização. Ajustar excitabilidade reduz ruído,
+              aumenta precisão e estabiliza padrões de disparo úteis para processamento.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Resumo do card">
+      <button class="modal-x" type="button" data-close="1" aria-label="Fechar">✕</button>
+
+      <div class="modal-top">
+        <div class="modal-media">
+          <img id="modalImg" alt="" loading="lazy" />
+          <div class="modal-media-controls">
+            <button type="button" id="swapImg">trocar</button>
+            <span id="imgState">Imagem A</span>
+          </div>
+        </div>
+
+        <div class="modal-meta">
+          <div class="pillrow" id="modalTags"></div>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-sub" id="modalOneLiner"></p>
+          <div class="modal-meshline" id="modalMeshLine" hidden>
+            <span class="modal-mesh-kicker">MeSH</span>
+            <a id="modalMeshUri" target="_blank" rel="noopener"></a>
+            <span id="modalMeshTree"></span>
+          </div>
+
+          <div class="modal-actions">
+            <a class="btn" id="modalSource" target="_blank" rel="noopener">Fonte</a>
+            <button class="btn ghost" type="button" id="copyCite">Copiar citação</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <h3>Pergunta de pesquisa</h3>
+        <ul id="modalStarter"></ul>
+
+        <div class="divider"></div>
+
+        <h3>Achados / evidências</h3>
+        <ul id="modalBullets"></ul>
+
+        <div class="divider"></div>
+
+        <h3>Aplicação prática no DOD</h3>
+        <ul id="modalApply"></ul>
+      </div>
+    </div>
+  </div>
+
+  <nav class="dock bottom-nav" aria-label="Dock de posts">
+    <a class="nav-item" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro" target="_self" rel="noopener" title="Neuro">
+      <span class="nav-icon">🧠</span><small>neuro</small>
+    </a>
+
+    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio" target="_self" rel="noopener" title="Physio">
+      <span class="nav-icon">👥</span><small>physio</small>
+    </a>
+
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport" target="_self" rel="noopener" title="Sport">
+      <span class="nav-icon">◎</span><small>sport</small>
+    </a>
+
+    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/health" target="_self" rel="noopener" title="Health">
+      <span class="nav-icon">+</span><small>health</small>
+    </a>
+  </nav>
+
+  <script src="/script.20260304.4.js" defer></script>
+  <script src="/mesh-updates.production.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06070B" />
+  <title>Neuro • DOD Performance</title>
+  <meta name="description" content="Neurociência: sinapse, plasticidade, foco. Artigos PubMed + DOD." />
+  <link rel="canonical" href="https://dodperformance.com.br/neuro" />
+  <link rel="stylesheet" href="/style.20260304.4.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/">
+        <div class="avatar"><img src="/assets/profile.jpg" alt="DOD"></div>
+        <div><strong>DOD PERFORMANCE</strong><span>neuro • physio • sport</span></div>
+      </a>
+      <div class="mini-actions"><div id="status">neuro-pubmed v2</div></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 1. HERO BANNER -->
+    <section id="divTitleHeader" class="hero-shell">
+      <div class="hero-content-full">
+        <h1>SINAPSE • REDE • FOCO</h1>
+        <div class="hero-tags">
+          <a href="#" class="tag-link">Terapias</a>
+          <a href="#" class="tag-link">Plasticidade</a>
+          <a href="#" class="tag-link">Pensamento</a>
+          <a href="#" class="tag-link">Consciência</a>
+          <a href="#" class="tag-link">Emoções</a>
+        </div>
+        <!-- Artigo Destaque PubMed -->
+        <article class="featured-pubmed">
+          <img src="[image:17]" alt="Silent Synapses" loading="lazy"> <!-- JS gera -->
+          <div>
+            <h2>Silent Synapses in the Adult Brain</h2>
+            <p>Sinapses glutamatérgicas recém-formadas são inicialmente silenciosas e requerem plasticidade dependente de atividade.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/39999855/" target="_blank" class="pubmed-link">PubMed →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. GRID 3-colunas PubMed -->
+    <section class="pubmed-grid">
+      <div class="grid-header">
+        <h3>Artigos PubMed • Neuro</h3>
+        <div class="filters">
+          <button class="chip active" data-pub-filter="all">Todos</button>
+          <button class="chip" data-pub-filter="synapse">Sinapse</button>
+          <button class="chip" data-pub-filter="plasticity">Plasticidade</button>
+        </div>
+      </div>
+      <div id="pubmedCardsGrid" class="pubmed-grid-3cols">
+        <!-- JS popula: img + título + resumo + fonte PubMed -->
+      </div>
+    </section>
+
+    <!-- Feed original (opcional, filtrado neuro) -->
+    <section id="feed" class="masonry"></section>
+  </main>
+
+  <!-- Dock ativo em neuro -->
+  <nav class="dock bottom-nav">
+    <a class="nav-item active" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro"><span class="nav-icon">🧠</span><small>neuro</small></a>
+    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio"><span class="nav-icon">👥</span><small>physio</small></a>
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport"><span class="nav-icon">◎</span><small>sport</small></a>
+    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/homeo"><span class="nav-icon">+</span><small>health</small></a>
+  </nav>
+
+  <script src="/script.20260304.4.js" defer></script>
+</body>
+</html>
+ <!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06070B" />
+  <title>DOD Performance • Neuro, Physio, Sport</title>
+  <meta name="description" content="Feed visual minimalista que conecta neurociência, fisiologia, esporte e homeostase a PubMed e MeSH." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://dodperformance.com.br/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DOD Performance" />
+  <meta property="og:description" content="Neuro, physio e sport em feed visual minimalista com cards científicos." />
+  <meta property="og:url" content="https://dodperformance.com.br/" />
+
+  <link rel="stylesheet" href="/style.20260304.4.css" />
+</head>
+
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/">
+        <div class="avatar">
+          <img src="/assets/profile.jpg" alt="DOD Performance" />
+        </div>
+        <div>
+          <strong>DOD PERFORMANCE</strong>
+          <span>neuro • physio • sport</span>
+        </div>
+      </a>
+
+      <div class="mini-actions">
+        <div id="status">mesh-live v2</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO PRINCIPAL (melhorado: mais claro e com CTA holograma) -->
+    <section class="hero-shell" aria-label="Porta de entrada DOD">
+      <section class="hero hero-document" aria-label="Imagens em rotação">
+        <div class="img on" id="slide0"></div>
+        <div class="img" id="slide1"></div>
+
+        <div class="hero-content" id="divTitleHeader">
+          <div class="hero-left">
+            <div class="hero-kicker">DOD • Neuro • Physio • Sport</div>
+            <div class="title" id="slideTitle">CIÊNCIA EM MODO FEED</div>
+            <div class="desc" id="slideDesc">
+              Cards visuais que conectam neurociência, fisiologia, esporte e homeostase a artigos PubMed e MeSH
+              em uma linha só de leitura aplicada.
+            </div>
+
+            <!-- Chips = navegação por eixos (clique duplo ou ícone → página temática) -->
+            <div class="hero-rail">
+              <div class="hero-exposed" id="heroExposed">
+                <button class="hero-exposed-chip is-active" data-hero-key="neuro">Neuro</button>
+                <button class="hero-exposed-chip" data-hero-key="physio">Physio</button>
+                <button class="hero-exposed-chip" data-hero-key="sport">Sport</button>
+                <button class="hero-exposed-chip" data-hero-key="homeo">Homeostase</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <!-- CTA holograma Neuro -->
+            <a class="btn btn-cta" href="/neuro/holo" title="Holograma cortical 3D">
+              🧠 holograma 3D
+            </a>
+            <button class="btn" id="shuffleBtn" type="button">alternar</button>
+            <button class="btn" id="pauseBtn" type="button">pausar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paper panel para PubMed/MeSH em destaque (futuro) -->
+      <aside class="paper-panel" aria-label="Painel documental"></aside>
+    </section>
+
+    <!-- BUSCA + FILTROS (agora = navegação por eixos) -->
+    <div class="bar">
+      <div class="search" role="search" aria-label="Buscar no feed DOD">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" placeholder="Buscar em sinapse, foco, VO2max, homeostase, protocolos..." />
+      </div>
+
+      <div class="chips" aria-label="Navegar por eixos">
+        <button class="chip active" data-filter="all" type="button">Tudo</button>
+        <button class="chip" data-filter="neuro" type="button">Neuro</button>
+        <button class="chip" data-filter="physio" type="button">Physio</button>
+        <button class="chip" data-filter="sport" type="button">Sport</button>
+        <button class="chip" data-filter="homeo" type="button">Homeostase</button>
+      </div>
+    </div>
+
+    <!-- GRID DE CARDS CIENTÍFICOS (prioriza cards âncora) -->
+    <section class="grid" id="cardsGrid" aria-label="Cards científicos DOD"></section>
+
+    <!-- FEED VISUAL (masonry com SOURCES) -->
+    <section id="feed" class="masonry" aria-label="Feed visual DOD"></section>
+
+    <!-- BLOCO HODGKIN & HUXLEY (mantido idêntico) -->
+    <section id="hh-inline" class="hh-inline" hidden aria-label="Base científica: Hodgkin & Huxley 1952">
+      <!-- Seu markup atual intacto -->
+      <div class="hh-top">
+        <div class="hh-top-left">
+          <div class="hh-badge">NEURO • SCIENCE • DOD</div>
+          <h2 class="hh-title">Sinapse, Rede e Foco</h2>
+          <p class="hh-sub">A dinâmica elétrica da excitação neuronal: o "código" bioelétrico de Na+ e K+.</p>
+        </div>
+        <div class="hh-top-right">
+          <button class="hh-btn" type="button" data-hh-open-modal>fonte científica</button>
+          <button class="hh-btn ghost" type="button" data-hh-toggle-read>ler</button>
+          <button class="hh-btn
