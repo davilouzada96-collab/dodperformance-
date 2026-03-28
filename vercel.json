@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/neuro", "destination": "/index.html" },
+    { "source": "/physio", "destination": "/index.html" },
+    { "source": "/sport", "destination": "/index.html" },
+    { "source": "/homeo", "destination": "/index.html" },
+    { "source": "/health", "destination": "/index.html" }
+  ]
+}
