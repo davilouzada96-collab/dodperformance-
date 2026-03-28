@@ -1,14 +1,10 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
 from pathlib import Path
 
 app = FastAPI(title="DOD Performance", version="0.1.0")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Serve assets directory and root site files
-app.mount("/assets", StaticFiles(directory=BASE_DIR / "assets"), name="assets")
 
 @app.get("/")
 async def root():
