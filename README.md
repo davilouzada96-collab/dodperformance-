@@ -10,6 +10,7 @@ Projeto DOD Performance preparado para deploy em Cloudflare Pages (frontend) e R
 - `assets/`: imagens estáticas
 - `backend/app.py`: backend FastAPI (serve os arquivos estáticos da raiz)
 - `backend/requirements.txt`: dependências Python
+- `scripts/check-assets.sh`: auditoria de referências `/assets`
 - `Dockerfile`: build para deploy no Render
 - `render.yaml`: configuração do serviço no Render
 - `vercel.json`: rewrites SPA (opcional)
@@ -32,3 +33,12 @@ docker run -p 8000:8000 dod-performance
 ```
 
 Depois acesse `http://localhost:8000`.
+
+## Validação de assets
+
+```bash
+./scripts/check-assets.sh
+```
+
+- Retorna `0` quando todos os arquivos referenciados em `/assets` existem.
+- Retorna `1` quando há arquivos faltantes e imprime a lista completa.
