@@ -1,21 +1,28 @@
 # DOD Performance
 
-Projeto DOD Performance preparado para deploy com Render.
+Projeto DOD Performance preparado para deploy em Cloudflare Pages (frontend) e Render (backend FastAPI).
 
-## O que foi mantido
+## Estrutura atual
 
-- `render.yaml` com serviço `dod-performance`
-- `Dockerfile` para build e deploy
-- front-end principal em `index.html`
-- backend FastAPI em `backend/app.py`
+- `index.html`: entrada principal do frontend
+- `script.js`: lógica do frontend
+- `style.20260304.4.css`: estilos do frontend
+- `assets/`: imagens estáticas
+- `backend/app.py`: backend FastAPI (serve os arquivos estáticos da raiz)
+- `backend/requirements.txt`: dependências Python
+- `Dockerfile`: build para deploy no Render
+- `render.yaml`: configuração do serviço no Render
+- `vercel.json`: rewrites SPA (opcional)
 
-## O que foi removido
+## Deploy
 
-- pacote de holograma e seus endpoints
-- frontend de holograma em `frontend/`
-- motor de protótipos em `future-engines/`
-- dados de simulação em `shared/`
-- página extra `Cortex neural /`
+- Cloudflare Pages:
+  - Framework preset: `None`
+  - Build command: vazio
+  - Output directory: `.`
+- Domínios:
+  - `dodperformance.com.br`
+  - `www.dodperformance.com.br`
 
 ## Como rodar local
 
