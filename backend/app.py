@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from starlette.responses import FileResponse
+from starlette.responses import FileResponse, RedirectResponse
 
 app = FastAPI(title="DOD Performance", version="0.1.0")
 
@@ -20,8 +20,13 @@ def serve_public_file(name: str) -> FileResponse:
     return FileResponse(target)
 
 @app.get("/")
-async def root():
-    return serve_public_file("index.html")
+async def root(request: Request):
+    if request.url.query:
+        return serve_public_file("index.html")
+    return RedirectResponse(
+        url="/?scene=sphere&mode=pure&gestures=ws&map=anatomical",
+        status_code=307,
+    )
 
 @app.get("/style.20260304.4.css")
 async def style_css():
