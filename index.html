@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,17 +20,21 @@
       background: rgba(10, 10, 20, 0.85);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
     }
-    .nav-item { position: relative; }
+
+    .nav-item {
+      position: relative;
+    }
+
     .nav-item::before {
       content: attr(data-tooltip);
       position: absolute;
       top: -36px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
       font-size: 10px;
       padding: 4px 8px;
@@ -39,13 +44,29 @@
       pointer-events: none;
       transition: opacity 0.2s;
     }
-    .nav-item:hover::before { opacity: 1; }
-    .dock .nav-item[data-section="neuro"].active { color: #7C3AED; }
-    .dock .nav-item[data-section="physio"].active { color: #2563EB; }
-    .dock .nav-item[data-section="sport"].active { color: #16A34A; }
-    .dock .nav-item[data-section="health"].active { color: #DC2626; }
+
+    .nav-item:hover::before {
+      opacity: 1;
+    }
+
+    .dock .nav-item[data-section="neuro"].active {
+      color: #7C3AED;
+    }
+
+    .dock .nav-item[data-section="physio"].active {
+      color: #2563EB;
+    }
+
+    .dock .nav-item[data-section="sport"].active {
+      color: #16A34A;
+    }
+
+    .dock .nav-item[data-section="health"].active {
+      color: #DC2626;
+    }
+
     .nav-item.active .nav-icon {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       padding: 4px 12px;
       transform: translateY(-2px);
@@ -83,7 +104,8 @@
           <div class="hero-left">
             <div class="hero-kicker">Projeto original • leitura aplicada</div>
             <div class="title" id="slideTitle">NEUROCIENCIA</div>
-            <div class="desc" id="slideDesc">Sinapse, rede e foco como linguagem de estudo, documentacao e traducao pratica.</div>
+            <div class="desc" id="slideDesc">Sinapse, rede e foco como linguagem de estudo, documentacao e traducao
+              pratica.</div>
           </div>
           <div class="hero-right">
             <button class="btn" id="shuffleBtn" type="button">alternar painel</button>
@@ -186,7 +208,8 @@
 
           <h3 class="hh-h3">Referência clássica</h3>
           <p class="hh-ref">
-            Hodgkin AL, Huxley AF (1952). <em>A Quantitative Description of Membrane Current and Its Application to Conduction and Excitation in Nerve</em>.
+            Hodgkin AL, Huxley AF (1952). <em>A Quantitative Description of Membrane Current and Its Application to
+              Conduction and Excitation in Nerve</em>.
             <span>The Journal of Physiology</span>.
           </p>
         </div>
@@ -294,19 +317,23 @@
   </div>
 
   <nav class="dock bottom-nav" aria-label="Dock de posts">
-    <a class="nav-item" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro" target="_self" rel="noopener" title="Neuro">
+    <a class="nav-item" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro" target="_self"
+      rel="noopener" title="Neuro">
       <span class="nav-icon">🧠</span><small>neuro</small>
     </a>
 
-    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio" target="_self" rel="noopener" title="Physio">
+    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio" target="_self"
+      rel="noopener" title="Physio">
       <span class="nav-icon">👥</span><small>physio</small>
     </a>
 
-    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport" target="_self" rel="noopener" title="Sport">
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport" target="_self"
+      rel="noopener" title="Sport">
       <span class="nav-icon">◎</span><small>sport</small>
     </a>
 
-    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/health" target="_self" rel="noopener" title="Health">
+    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/health"
+      target="_self" rel="noopener" title="Health">
       <span class="nav-icon">+</span><small>health</small>
     </a>
   </nav>
@@ -314,9 +341,11 @@
   <script src="/script.20260304.4.js" defer></script>
   <script src="/mesh-updates.production.js" defer></script>
 </body>
+
 </html>
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -326,6 +355,7 @@
   <link rel="canonical" href="https://dodperformance.com.br/neuro" />
   <link rel="stylesheet" href="/style.20260304.4.css" />
 </head>
+
 <body>
   <header class="top">
     <div class="top-inner">
@@ -333,7 +363,9 @@
         <div class="avatar"><img src="/assets/profile.jpg" alt="DOD"></div>
         <div><strong>DOD PERFORMANCE</strong><span>neuro • physio • sport</span></div>
       </a>
-      <div class="mini-actions"><div id="status">neuro-pubmed v2</div></div>
+      <div class="mini-actions">
+        <div id="status">neuro-pubmed v2</div>
+      </div>
     </div>
   </header>
 
@@ -354,7 +386,8 @@
           <img src="[image:17]" alt="Silent Synapses" loading="lazy"> <!-- JS gera -->
           <div>
             <h2>Silent Synapses in the Adult Brain</h2>
-            <p>Sinapses glutamatérgicas recém-formadas são inicialmente silenciosas e requerem plasticidade dependente de atividade.</p>
+            <p>Sinapses glutamatérgicas recém-formadas são inicialmente silenciosas e requerem plasticidade dependente
+              de atividade.</p>
             <a href="https://pubmed.ncbi.nlm.nih.gov/39999855/" target="_blank" class="pubmed-link">PubMed →</a>
           </div>
         </article>
@@ -382,23 +415,30 @@
 
   <!-- Dock ativo em neuro -->
   <nav class="dock bottom-nav">
-    <a class="nav-item active" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro"><span class="nav-icon">🧠</span><small>neuro</small></a>
-    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio"><span class="nav-icon">👥</span><small>physio</small></a>
-    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport"><span class="nav-icon">◎</span><small>sport</small></a>
-    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/homeo"><span class="nav-icon">+</span><small>health</small></a>
+    <a class="nav-item active" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro"><span
+        class="nav-icon">🧠</span><small>neuro</small></a>
+    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio"><span
+        class="nav-icon">👥</span><small>physio</small></a>
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport"><span
+        class="nav-icon">◎</span><small>sport</small></a>
+    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/homeo"><span
+        class="nav-icon">+</span><small>health</small></a>
   </nav>
 
   <script src="/script.20260304.4.js" defer></script>
 </body>
+
 </html>
- <!doctype html>
+<!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#06070B" />
   <title>DOD Performance • Neuro, Physio, Sport</title>
-  <meta name="description" content="Feed visual minimalista que conecta neurociência, fisiologia, esporte e homeostase a PubMed e MeSH." />
+  <meta name="description"
+    content="Feed visual minimalista que conecta neurociência, fisiologia, esporte e homeostase a PubMed e MeSH." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://dodperformance.com.br/" />
   <meta property="og:type" content="website" />
@@ -429,7 +469,7 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO PRINCIPAL (melhorado: mais claro e com CTA holograma) -->
+    <!-- HERO PRINCIPAL do DOD Performance -->
     <section class="hero-shell" aria-label="Porta de entrada DOD">
       <section class="hero hero-document" aria-label="Imagens em rotação">
         <div class="img on" id="slide0"></div>
@@ -456,10 +496,6 @@
           </div>
 
           <div class="hero-right">
-            <!-- CTA holograma Neuro -->
-            <a class="btn btn-cta" href="/neuro/holo" title="Holograma cortical 3D">
-              🧠 holograma 3D
-            </a>
             <button class="btn" id="shuffleBtn" type="button">alternar</button>
             <button class="btn" id="pauseBtn" type="button">pausar</button>
           </div>
