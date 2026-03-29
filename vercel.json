@@ -1,10 +1,14 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
-    { "source": "/neuro", "destination": "/index.html" },
-    { "source": "/physio", "destination": "/index.html" },
-    { "source": "/sport", "destination": "/index.html" },
-    { "source": "/homeo", "destination": "/index.html" },
-    { "source": "/health", "destination": "/index.html" }
+    { "source": "/neuro", "destination": "/neuro.html" },
+    { "source": "/neuro-focus", "destination": "/neuro.html" },
+    { "source": "/physio", "destination": "/physio.html" },
+    { "source": "/physio-core", "destination": "/physio.html" },
+    { "source": "/sport", "destination": "/sport.html" },
+    { "source": "/sport-physio", "destination": "/sport.html" },
+    { "source": "/health", "destination": "/health.html" },
+    { "source": "/homeo", "destination": "/health.html" },
+    { "source": "/health-homeostasis", "destination": "/health.html" }
   ]
 }

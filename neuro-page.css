@@ -1,0 +1,308 @@
+:root {
+  --neuro-accent: #8b5cf6;
+}
+
+.neuro-page {
+  padding-bottom: 108px;
+}
+
+.neuro-hero {
+  margin-top: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  background:
+    radial-gradient(85% 120% at 100% 0%, rgba(139, 92, 246, 0.2), transparent 65%),
+    linear-gradient(145deg, rgba(10, 7, 20, 0.95), rgba(14, 9, 30, 0.94));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+}
+
+.neuro-kicker {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.neuro-hero h1 {
+  margin: 8px 0;
+  letter-spacing: 0.08em;
+  font-size: clamp(28px, 6vw, 46px);
+}
+
+.neuro-lead {
+  margin: 0;
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.55;
+}
+
+.neuro-hero-meta {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.neuro-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.42);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.84);
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.neuro-metrics {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.neuro-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.neuro-card h2 {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.neuro-value {
+  margin: 10px 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--neuro-accent);
+}
+
+.neuro-caption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.neuro-block,
+.neuro-checklist {
+  margin-top: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.neuro-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.neuro-tab {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.84);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.neuro-tab.is-active {
+  border-color: rgba(139, 92, 246, 0.72);
+  color: #f7f2ff;
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.neuro-panel {
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(16, 10, 30, 0.74);
+  padding: 14px;
+}
+
+.neuro-panel h3 {
+  margin: 0 0 8px;
+}
+
+.neuro-panel p {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.neuro-panel ul {
+  margin: 0;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.neuro-checklist h2 {
+  margin: 0 0 12px;
+}
+
+.neuro-item + .neuro-item {
+  margin-top: 10px;
+}
+
+.neuro-toggle {
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 11px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.neuro-toggle.is-open {
+  border-color: rgba(139, 92, 246, 0.72);
+  background: rgba(139, 92, 246, 0.16);
+}
+
+.neuro-body {
+  margin-top: 8px;
+  border-left: 2px solid rgba(139, 92, 246, 0.74);
+  padding: 2px 0 2px 10px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bottom-nav {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.dock .nav-item[data-section="neuro"].active {
+  color: var(--neuro-accent);
+}
+
+.nav-item.active .nav-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 4px 12px;
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .neuro-hero {
+    padding: 18px;
+  }
+
+  .neuro-lead {
+    font-size: 14px;
+  }
+
+  .neuro-value {
+    font-size: 24px;
+  }
+}
+
+/* Motion polish */
+.neuro-page {
+  animation: neuroPageFade 0.48s ease-out;
+}
+
+.neuro-hero {
+  animation: neuroRise 0.62s ease-out;
+}
+
+.neuro-metrics .neuro-card,
+.neuro-block,
+.neuro-checklist {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: neuroRiseIn 0.52s ease-out forwards;
+}
+
+.neuro-metrics .neuro-card:nth-child(1) { animation-delay: 0.08s; }
+.neuro-metrics .neuro-card:nth-child(2) { animation-delay: 0.14s; }
+.neuro-metrics .neuro-card:nth-child(3) { animation-delay: 0.2s; }
+.neuro-block { animation-delay: 0.24s; }
+.neuro-checklist { animation-delay: 0.3s; }
+
+.neuro-card,
+.neuro-panel,
+.neuro-toggle,
+.neuro-tab {
+  transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.neuro-card:hover,
+.neuro-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+}
+
+.neuro-tab:focus-visible,
+.neuro-toggle:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.78);
+  outline-offset: 2px;
+}
+
+@keyframes neuroPageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes neuroRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neuroRiseIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neuro-page,
+  .neuro-hero,
+  .neuro-metrics .neuro-card,
+  .neuro-block,
+  .neuro-checklist {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

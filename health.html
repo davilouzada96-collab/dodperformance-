@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06070B" />
+  <title>DOD Performance | Health</title>
+  <meta name="description" content="Página de saúde e homeostase no DOD Performance." />
+  <link rel="stylesheet" href="/style.20260304.4.css" />
+  <link rel="stylesheet" href="/health-page.css" />
+</head>
+
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/">
+        <div class="avatar">
+          <img src="/assets/profile.jpg" alt="DOD Profile" />
+        </div>
+        <div>
+          <strong>DOD PERFORMANCE</strong>
+          <span>neuro • physio • sport</span>
+        </div>
+      </a>
+
+      <div class="mini-actions">
+        <div id="status">lab health</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap health-page">
+    <section class="health-hero" aria-label="Hub de saúde e homeostase">
+      <div>
+        <p class="health-kicker">DOD • SAÚDE E HOMEOSTASE</p>
+        <h1>HEALTH</h1>
+        <p class="health-lead">
+          Organização de sono, estresse, nutrição e recuperação para sustentar performance com saúde no longo prazo.
+        </p>
+      </div>
+      <div class="health-hero-meta">
+        <span>Atualização semanal de rotina</span>
+        <span>Foco: equilíbrio fisiológico e aderência</span>
+      </div>
+    </section>
+
+    <section class="health-metrics" aria-label="Indicadores de saúde">
+      <article class="health-card">
+        <h2>Sono</h2>
+        <p class="health-value">7h 18m</p>
+        <p class="health-caption">Média semanal com consistência de horário em 5 de 7 dias.</p>
+      </article>
+      <article class="health-card">
+        <h2>Estresse</h2>
+        <p class="health-value">Baixo-moderado</p>
+        <p class="health-caption">Resposta fisiológica estável com boa recuperação entre dias intensos.</p>
+      </article>
+      <article class="health-card">
+        <h2>Hidratação</h2>
+        <p class="health-value">Adequada</p>
+        <p class="health-caption">Meta hídrica atingida em 6 de 7 dias.</p>
+      </article>
+    </section>
+
+    <section class="health-block" aria-label="Pilares de saúde">
+      <div class="health-tabs" role="tablist" aria-label="Pilares">
+        <button type="button" class="health-tab is-active" data-pillar="sleep">Sono</button>
+        <button type="button" class="health-tab" data-pillar="nutrition">Nutrição</button>
+        <button type="button" class="health-tab" data-pillar="stress">Estresse</button>
+      </div>
+
+      <div class="health-panel is-active" data-pillar-panel="sleep">
+        <h3>Sono</h3>
+        <p>Regularidade de horário, rotina pré-sono e ajuste de estímulos noturnos para restauração efetiva.</p>
+        <ul>
+          <li>Meta: consistência de horário ao longo da semana</li>
+          <li>Risco: despertares frequentes e baixa profundidade</li>
+          <li>Ação: higiene do sono e ambiente favorável</li>
+        </ul>
+      </div>
+
+      <div class="health-panel" data-pillar-panel="nutrition" hidden>
+        <h3>Nutrição</h3>
+        <p>Distribuição de proteína, timing de carboidrato e densidade nutricional para suportar adaptação.</p>
+        <ul>
+          <li>Meta: adequação energética e qualidade alimentar</li>
+          <li>Risco: baixa disponibilidade energética crônica</li>
+          <li>Ação: planejamento de refeições e hidratação</li>
+        </ul>
+      </div>
+
+      <div class="health-panel" data-pillar-panel="stress" hidden>
+        <h3>Estresse</h3>
+        <p>Gestão de carga cognitiva e emocional para preservar recuperação e tomada de decisão.</p>
+        <ul>
+          <li>Meta: estabilidade autonômica e mental</li>
+          <li>Risco: acúmulo silencioso de fadiga</li>
+          <li>Ação: pausas, respiração e ajuste de agenda</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="health-checklist" aria-label="Checklist de rotina">
+      <h2>Checklist Operacional</h2>
+
+      <article class="health-item">
+        <button type="button" class="health-toggle" data-health-toggle>
+          Rotina da manhã
+        </button>
+        <div class="health-body" hidden>
+          <p>Hidratar, avaliar disposição, buscar luz natural e definir prioridade central do dia.</p>
+        </div>
+      </article>
+
+      <article class="health-item">
+        <button type="button" class="health-toggle" data-health-toggle>
+          Rotina da noite
+        </button>
+        <div class="health-body" hidden>
+          <p>Reduzir estímulos, planejar sono, revisar alimentação e preparar recuperação do dia seguinte.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav class="dock bottom-nav" aria-label="Dock de posts">
+    <a class="nav-item" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro" target="_self" rel="noopener" title="Neuro">
+      <span class="nav-icon">🧠</span><small>neuro</small>
+    </a>
+
+    <a class="nav-item" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio" target="_self" rel="noopener" title="Physio">
+      <span class="nav-icon">👥</span><small>physio</small>
+    </a>
+
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport" target="_self" rel="noopener" title="Sport">
+      <span class="nav-icon">◎</span><small>sport</small>
+    </a>
+
+    <a class="nav-item dock-health active" data-section="health" data-tooltip="Saúde & Homeostase" href="/health" target="_self" rel="noopener" title="Health" aria-current="page">
+      <span class="nav-icon">+</span><small>health</small>
+    </a>
+  </nav>
+
+  <script src="/health-page.js" defer></script>
+</body>
+
+</html>

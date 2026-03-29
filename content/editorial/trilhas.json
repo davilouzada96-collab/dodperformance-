@@ -1,0 +1,125 @@
+{
+  "version": "2026-03-29",
+  "brand": {
+    "name": "DOD Performance",
+    "positioning": "Laboratorio editorial de neurofisiologia aplicada",
+    "voice": [
+      "Autoral",
+      "Minimalista",
+      "Baseado em evidencia",
+      "Traducao pratica sem sensacionalismo"
+    ]
+  },
+  "tracks": [
+    {
+      "id": "neurofisiologia",
+      "label": "Neurofisiologia",
+      "objective": "Explicar mecanismos neurais fundamentais e seu impacto funcional.",
+      "core_questions": [
+        "Qual circuito e recrutado?",
+        "Qual mecanismo e marcador predominante?",
+        "Que mudanca funcional e esperada no curto e medio prazo?"
+      ],
+      "keywords": [
+        "sinapse",
+        "plasticidade",
+        "excitabilidade",
+        "rede",
+        "foco"
+      ]
+    },
+    {
+      "id": "movimento-recuperacao",
+      "label": "Movimento e Recuperacao",
+      "objective": "Conectar fisiologia do movimento, carga e recuperacao em linguagem operacional.",
+      "core_questions": [
+        "Qual sistema limita performance?",
+        "Qual sinal de fadiga e relevante?",
+        "Qual protocolo acelera recuperacao sem comprometer adaptacao?"
+      ],
+      "keywords": [
+        "forca",
+        "controle motor",
+        "inflamacao",
+        "fadiga",
+        "recuperacao"
+      ]
+    },
+    {
+      "id": "performance-cognitiva",
+      "label": "Performance Cognitiva",
+      "objective": "Traduzir ciencia de atencao, memoria e tomada de decisao para pratica aplicada.",
+      "core_questions": [
+        "Qual tarefa cognitiva e alvo?",
+        "Qual fator ambiental interfere no desempenho?",
+        "Como medir ganho com baixa friccao?"
+      ],
+      "keywords": [
+        "atencao",
+        "memoria",
+        "tomada de decisao",
+        "sono",
+        "ritmo circadiano"
+      ]
+    },
+    {
+      "id": "metodos-ferramentas",
+      "label": "Metodos e Ferramentas",
+      "objective": "Abrir metodo de leitura cientifica e organizacao de evidencia do DoD.",
+      "core_questions": [
+        "Qual tipo de estudo foi usado?",
+        "Qual e o tamanho do efeito e a limitacao central?",
+        "Como classificar confianca de forma transparente?"
+      ],
+      "keywords": [
+        "pubmed",
+        "mesh",
+        "protocolo",
+        "metodo",
+        "reprodutibilidade"
+      ]
+    },
+    {
+      "id": "diario-pesquisa",
+      "label": "Diario de Pesquisa DoD",
+      "objective": "Registrar hipoteses, experimentos e revisoes internas de forma publica e auditavel.",
+      "core_questions": [
+        "Qual hipotese foi testada?",
+        "O que funcionou e o que falhou?",
+        "Qual e o proximo experimento minimo?"
+      ],
+      "keywords": [
+        "hipotese",
+        "experimento",
+        "iteracao",
+        "aprendizado",
+        "revisao"
+      ]
+    }
+  ],
+  "editorial_rules": {
+    "depth_levels": [
+      {
+        "id": "nota",
+        "label": "Nota Curta",
+        "target_words": "250-450"
+      },
+      {
+        "id": "ancora",
+        "label": "Peca Ancora",
+        "target_words": "900-1500"
+      }
+    ],
+    "quality_gate": [
+      "Fonte primaria obrigatoria",
+      "Limitacoes explicitas",
+      "Aplicacao DoD em bullets",
+      "Hipotese futura obrigatoria"
+    ],
+    "anti_noise": [
+      "Sem clickbait",
+      "Sem promessas absolutas",
+      "Sem extrapolacao alem dos dados"
+    ]
+  }
+}

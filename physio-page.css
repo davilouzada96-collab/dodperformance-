@@ -1,0 +1,308 @@
+:root {
+  --physio-accent: #60a5fa;
+}
+
+.physio-page {
+  padding-bottom: 108px;
+}
+
+.physio-hero {
+  margin-top: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  background:
+    radial-gradient(85% 120% at 100% 0%, rgba(96, 165, 250, 0.18), transparent 65%),
+    linear-gradient(145deg, rgba(4, 8, 16, 0.95), rgba(6, 16, 32, 0.94));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+}
+
+.physio-kicker {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.physio-hero h1 {
+  margin: 8px 0;
+  letter-spacing: 0.08em;
+  font-size: clamp(28px, 6vw, 46px);
+}
+
+.physio-lead {
+  margin: 0;
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.55;
+}
+
+.physio-hero-meta {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.physio-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.84);
+  background: rgba(96, 165, 250, 0.11);
+}
+
+.physio-panels {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.panel-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.panel-card h2 {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.panel-value {
+  margin: 10px 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--physio-accent);
+}
+
+.panel-caption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.physio-block,
+.physio-checklist {
+  margin-top: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.physio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.physio-tab {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.84);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.physio-tab.is-active {
+  border-color: rgba(96, 165, 250, 0.66);
+  color: #f2f8ff;
+  background: rgba(96, 165, 250, 0.16);
+}
+
+.physio-module {
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 12, 20, 0.72);
+  padding: 14px;
+}
+
+.physio-module h3 {
+  margin: 0 0 8px;
+}
+
+.physio-module p {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.physio-module ul {
+  margin: 0;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.physio-checklist h2 {
+  margin: 0 0 12px;
+}
+
+.check-card + .check-card {
+  margin-top: 10px;
+}
+
+.check-toggle {
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 11px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.check-toggle.is-open {
+  border-color: rgba(96, 165, 250, 0.66);
+  background: rgba(96, 165, 250, 0.14);
+}
+
+.check-body {
+  margin-top: 8px;
+  border-left: 2px solid rgba(96, 165, 250, 0.72);
+  padding: 2px 0 2px 10px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bottom-nav {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.dock .nav-item[data-section="physio"].active {
+  color: var(--physio-accent);
+}
+
+.nav-item.active .nav-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 4px 12px;
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .physio-hero {
+    padding: 18px;
+  }
+
+  .physio-lead {
+    font-size: 14px;
+  }
+
+  .panel-value {
+    font-size: 24px;
+  }
+}
+
+/* Motion polish */
+.physio-page {
+  animation: physioPageFade 0.48s ease-out;
+}
+
+.physio-hero {
+  animation: physioRise 0.62s ease-out;
+}
+
+.physio-panels .panel-card,
+.physio-block,
+.physio-checklist {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: physioRiseIn 0.52s ease-out forwards;
+}
+
+.physio-panels .panel-card:nth-child(1) { animation-delay: 0.08s; }
+.physio-panels .panel-card:nth-child(2) { animation-delay: 0.14s; }
+.physio-panels .panel-card:nth-child(3) { animation-delay: 0.2s; }
+.physio-block { animation-delay: 0.24s; }
+.physio-checklist { animation-delay: 0.3s; }
+
+.panel-card,
+.physio-module,
+.check-toggle,
+.physio-tab {
+  transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.panel-card:hover,
+.physio-module:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+}
+
+.physio-tab:focus-visible,
+.check-toggle:focus-visible {
+  outline: 2px solid rgba(96, 165, 250, 0.78);
+  outline-offset: 2px;
+}
+
+@keyframes physioPageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes physioRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes physioRiseIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .physio-page,
+  .physio-hero,
+  .physio-panels .panel-card,
+  .physio-block,
+  .physio-checklist {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -2898,3 +2898,97 @@ body.lock{ overflow:hidden; }
   background      : rgba(18,35,65,0.75);
   color           : #e9f1ff;   reveja o css e melhore com esta opcao 
 PY
+
+/* Etapa 5 - Editorial UI (sem inline styles) */
+.editorial-toggle {
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-color: rgba(120, 165, 255, 0.35);
+  color: rgba(214, 229, 255, 0.95);
+  background: rgba(17, 31, 59, 0.42);
+}
+
+.editorial-toggle:hover {
+  border-color: rgba(146, 191, 255, 0.72);
+  box-shadow: 0 0 0 4px rgba(102, 153, 255, 0.12);
+}
+
+.editorial-hub {
+  margin-top: 16px;
+}
+
+.editorial-hero-card {
+  grid-column: 1 / -1;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: default;
+}
+
+.editorial-hero-title {
+  margin: 8px 0 0;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.editorial-hero-copy {
+  margin: 6px 0 0;
+  color: rgba(229, 231, 235, 0.86);
+  line-height: 1.5;
+}
+
+.editorial-track-card {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.editorial-track-title {
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+
+.editorial-track-objective {
+  margin: 6px 0 0;
+  color: rgba(229, 231, 235, 0.86);
+  line-height: 1.45;
+}
+
+.editorial-track-question {
+  margin: 8px 0 0;
+  color: rgba(229, 231, 235, 0.9);
+  line-height: 1.45;
+}
+
+.editorial-track-action {
+  margin-top: 10px;
+}
+
+.editorial-insights {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.editorial-insight-card {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: default;
+}
+
+.editorial-insight-title {
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+
+.editorial-list {
+  margin: 8px 0 0 18px;
+  line-height: 1.5;
+  color: rgba(229, 231, 235, 0.9);
+}

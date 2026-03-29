@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06070B" />
+  <title>DOD Performance | Physio</title>
+  <meta name="description" content="Página de fisiologia aplicada no DOD Performance." />
+  <link rel="stylesheet" href="/style.20260304.4.css" />
+  <link rel="stylesheet" href="/physio-page.css" />
+</head>
+
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/">
+        <div class="avatar">
+          <img src="/assets/profile.jpg" alt="DOD Profile" />
+        </div>
+        <div>
+          <strong>DOD PERFORMANCE</strong>
+          <span>neuro • physio • sport</span>
+        </div>
+      </a>
+
+      <div class="mini-actions">
+        <div id="status">lab physio</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap physio-page">
+    <section class="physio-hero" aria-label="Hub de fisiologia aplicada">
+      <div>
+        <p class="physio-kicker">DOD • FISIOLOGIA APLICADA</p>
+        <h1>PHYSIO</h1>
+        <p class="physio-lead">
+          Controle de carga interna, biomarcadores e resposta adaptativa para tomada de decisão clínica e esportiva.
+        </p>
+      </div>
+      <div class="physio-hero-meta">
+        <span>Atualização semanal de prontidão</span>
+        <span>Foco: regulação, adaptação e recuperação</span>
+      </div>
+    </section>
+
+    <section class="physio-panels" aria-label="Painéis de monitoramento">
+      <article class="panel-card">
+        <h2>Estresse Sistêmico</h2>
+        <p class="panel-value">Moderado</p>
+        <p class="panel-caption">Leitura integrada de sono, percepção de fadiga e resposta autonômica.</p>
+      </article>
+      <article class="panel-card">
+        <h2>Recuperação</h2>
+        <p class="panel-value">72%</p>
+        <p class="panel-caption">Janela favorável para sessão submáxima, técnica ou de refinamento.</p>
+      </article>
+      <article class="panel-card">
+        <h2>Carga Interna</h2>
+        <p class="panel-value">RPE 6.1</p>
+        <p class="panel-caption">Consistência adequada entre carga planejada e carga percebida.</p>
+      </article>
+    </section>
+
+    <section class="physio-block" aria-label="Módulos fisiológicos">
+      <div class="physio-tabs" role="tablist" aria-label="Módulos">
+        <button type="button" class="physio-tab is-active" data-module="autonomic">Autonômico</button>
+        <button type="button" class="physio-tab" data-module="metabolic">Metabólico</button>
+        <button type="button" class="physio-tab" data-module="inflammatory">Inflamatório</button>
+      </div>
+
+      <div class="physio-module is-active" data-module-panel="autonomic">
+        <h3>Autonômico</h3>
+        <p>Leitura de HRV, frequência de repouso e percepção subjetiva para ajustar densidade de treino.</p>
+        <ul>
+          <li>Meta: estabilidade vagal ao longo da semana</li>
+          <li>Risco: supressão persistente de variabilidade</li>
+          <li>Ação: modular volume e intensidade</li>
+        </ul>
+      </div>
+
+      <div class="physio-module" data-module-panel="metabolic" hidden>
+        <h3>Metabólico</h3>
+        <p>Uso de resposta ventilatória, tolerância ao esforço e sinais energéticos para guiar estímulos.</p>
+        <ul>
+          <li>Meta: eficiência metabólica com progressão sustentável</li>
+          <li>Risco: queda abrupta de desempenho entre sessões</li>
+          <li>Ação: revisar distribuição de carga e reposição</li>
+        </ul>
+      </div>
+
+      <div class="physio-module" data-module-panel="inflammatory" hidden>
+        <h3>Inflamatório</h3>
+        <p>Integração de dor, rigidez e sinais clínicos para evitar acúmulo de fadiga residual.</p>
+        <ul>
+          <li>Meta: recuperação tecidual em ritmo adequado</li>
+          <li>Risco: dor persistente acima de 48h</li>
+          <li>Ação: sessão regenerativa e monitoramento ativo</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="physio-checklist" aria-label="Checklist de sessão">
+      <h2>Checklist Operacional</h2>
+
+      <article class="check-card">
+        <button type="button" class="check-toggle" data-check-toggle>
+          Pré-sessão
+        </button>
+        <div class="check-body" hidden>
+          <p>Validar sono, prontidão subjetiva, frequência de repouso e dor muscular tardia.</p>
+        </div>
+      </article>
+
+      <article class="check-card">
+        <button type="button" class="check-toggle" data-check-toggle>
+          Pós-sessão
+        </button>
+        <div class="check-body" hidden>
+          <p>Registrar RPE, qualidade técnica, resposta cardiorrespiratória e estratégia de recuperação.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav class="dock bottom-nav" aria-label="Dock de posts">
+    <a class="nav-item" data-section="neuro" data-tooltip="Neurociência & Foco" href="/neuro" target="_self" rel="noopener" title="Neuro">
+      <span class="nav-icon">🧠</span><small>neuro</small>
+    </a>
+
+    <a class="nav-item active" data-section="physio" data-tooltip="Fisiologia Aplicada" href="/physio" target="_self" rel="noopener" title="Physio" aria-current="page">
+      <span class="nav-icon">👥</span><small>physio</small>
+    </a>
+
+    <a class="nav-item" data-section="sport" data-tooltip="Performance Esportiva" href="/sport" target="_self" rel="noopener" title="Sport">
+      <span class="nav-icon">◎</span><small>sport</small>
+    </a>
+
+    <a class="nav-item dock-health" data-section="health" data-tooltip="Saúde & Homeostase" href="/health" target="_self" rel="noopener" title="Health">
+      <span class="nav-icon">+</span><small>health</small>
+    </a>
+  </nav>
+
+  <script src="/physio-page.js" defer></script>
+</body>
+
+</html>

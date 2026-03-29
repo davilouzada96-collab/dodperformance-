@@ -52,6 +52,11 @@ const LOCAL_ASSETS = {};
 const MESH_LOOKUP_BASE = "https://id.nlm.nih.gov/mesh/lookup";
 const MESH_SPARQL_ENDPOINT = "https://id.nlm.nih.gov/mesh/sparql";
 const meshCache = new Map();
+const EDITORIAL_ENDPOINT = "/editorial/trilhas.json";
+const EDITORIAL_PLAYBOOK_ENDPOINT = "/editorial/playbook.md";
+const EDITORIAL_CALENDAR_ENDPOINT = "/editorial/calendario-12-semanas.md";
+const EDITORIAL_QUERY_PARAM = "editorial";
+const EDITORIAL_STORAGE_KEY = "dod_editorial_mode";
 
 const FEATURE_NEURO_CARD = {
   id: "neuro-polilaminina",
@@ -303,6 +308,288 @@ function escapeAttr(value) {
     .replace(/'/g, "&#039;");
 }
 
+function readEditorialModeFromQuery() {
+  try {
+    const params = new URLSearchParams(window.location.search || "");
+    const raw = params.get(EDITORIAL_QUERY_PARAM);
+    if (raw === null) return null;
+    return raw === "1" || raw === "true" || raw === "on";
+  } catch (_) {
+    return null;
+  }
+}
+
+function readEditorialModeFromStorage() {
+  try {
+    return window.localStorage.getItem(EDITORIAL_STORAGE_KEY) === "1";
+  } catch (_) {
+    return false;
+  }
+}
+
+function persistEditorialMode(value) {
+  try {
+    window.localStorage.setItem(EDITORIAL_STORAGE_KEY, value ? "1" : "0");
+  } catch (_) {
+    // no-op
+  }
+}
+
+function shouldEnableEditorialMode() {
+  const queryValue = readEditorialModeFromQuery();
+  if (queryValue !== null) {
+    persistEditorialMode(queryValue);
+    return queryValue;
+  }
+  return readEditorialModeFromStorage();
+}
+
+function buildEditorialUrl(enabled) {
+  const url = new URL(window.location.href);
+  if (enabled) {
+    url.searchParams.set(EDITORIAL_QUERY_PARAM, "1");
+  } else {
+    url.searchParams.delete(EDITORIAL_QUERY_PARAM);
+  }
+  return url.toString();
+}
+
+function mountEditorialToggle() {
+  const host = document.querySelector(".mini-actions");
+  if (!host) return;
+  if (document.getElementById("editorialToggle")) return;
+
+  const button = document.createElement("button");
+  button.id = "editorialToggle";
+  button.type = "button";
+  button.className = "btn ghost editorial-toggle";
+
+  const applyText = () => {
+    const enabled = shouldEnableEditorialMode();
+    button.textContent = enabled ? "editorial: on" : "editorial: off";
+  };
+
+  button.addEventListener("click", () => {
+    const next = !shouldEnableEditorialMode();
+    persistEditorialMode(next);
+    window.location.assign(buildEditorialUrl(next));
+  });
+
+  applyText();
+  host.appendChild(button);
+}
+
+async function fetchEditorialText(endpoint) {
+  try {
+    const response = await fetch(endpoint, { cache: "no-store" });
+    if (!response.ok) return "";
+    return await response.text();
+  } catch (_) {
+    return "";
+  }
+}
+
+function parseCalendarHypotheses(markdown = "") {
+  const lines = String(markdown).split("\n").map((line) => line.trim());
+  const direct = lines
+    .filter((line) => line.startsWith("- Nota 2: Diario de Pesquisa DoD - "))
+    .map((line) => line.replace("- Nota 2: Diario de Pesquisa DoD - ", "").trim())
+    .filter(Boolean);
+
+  if (direct.length > 0) return direct.slice(0, 4);
+
+  return lines
+    .filter((line) => line.startsWith("- ") && line.toLowerCase().includes("hipotese"))
+    .map((line) => line.replace(/^-\s+/, "").trim())
+    .filter(Boolean)
+    .slice(0, 4);
+}
+
+function parsePlaybookChecklist(markdown = "") {
+  const content = String(markdown);
+  const match = content.match(/## Checklist de publicacao \(obrigatorio\)([\s\S]*?)(\n##\s|$)/);
+  if (!match) return [];
+
+  return match[1]
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("- "))
+    .map((line) => line.replace(/^-\s+/, "").trim())
+    .filter(Boolean)
+    .slice(0, 4);
+}
+
+
+async function hydrateEditorialInsights() {
+  const insights = document.getElementById("editorialInsights");
+  if (!insights) return;
+
+  const [calendarMd, playbookMd] = await Promise.all([
+    fetchEditorialText(EDITORIAL_CALENDAR_ENDPOINT),
+    fetchEditorialText(EDITORIAL_PLAYBOOK_ENDPOINT)
+  ]);
+
+  const hypotheses = parseCalendarHypotheses(calendarMd);
+  const checklist = parsePlaybookChecklist(playbookMd);
+
+  if (hypotheses.length === 0 && checklist.length === 0) {
+    insights.innerHTML = "";
+    return;
+  }
+
+  insights.innerHTML = `
+    <article class="card is-live editorial-insight-card">
+      <div class="tag">ULTIMAS HIPOTESES</div>
+      <h4 class="editorial-insight-title">Diario de Pesquisa DoD</h4>
+      <ul class="editorial-list">${hypotheses.map((item) => `<li>${escapeAttr(item)}</li>`).join("")}</ul>
+    </article>
+    <article class="card is-live editorial-insight-card">
+      <div class="tag">CHECKLIST</div>
+      <h4 class="editorial-insight-title">Gatilhos de qualidade editorial</h4>
+      <ul class="editorial-list">${checklist.map((item) => `<li>${escapeAttr(item)}</li>`).join("")}</ul>
+    </article>
+  `;
+}
+
+async function fetchEditorialConfig() {
+  try {
+    const response = await fetch(EDITORIAL_ENDPOINT, { cache: "no-store" });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    if (!payload || !Array.isArray(payload.tracks) || payload.tracks.length === 0) return null;
+    return payload;
+  } catch (_) {
+    return null;
+  }
+}
+
+function renderEditorialHub(config) {
+  const tracks = Array.isArray(config?.tracks) ? config.tracks.slice(0, 4) : [];
+  if (tracks.length === 0) return;
+
+  const mainWrap = document.querySelector("main.wrap");
+  const bar = document.querySelector(".bar");
+  if (!mainWrap || !bar) return;
+
+  const ids = ["neuro", "physio", "sport", "homeo"];
+  const cards = tracks.map((track, index) => {
+    const slot = ids[index] || "all";
+    const label = escapeAttr(track?.label || "Trilha");
+    const objective = escapeAttr(track?.objective || "");
+    const question = escapeAttr((track?.core_questions || [])[0] || "");
+    const query = escapeAttr((track?.keywords || []).join(" "));
+    const keywords = Array.isArray(track?.keywords) ? track.keywords.slice(0, 3) : [];
+
+    return `
+      <article class="card is-live editorial-track-card" data-editorial-slot="${slot}">
+        <div class="pillrow">${keywords.map((keyword) => `<span class="pill">${escapeAttr(keyword)}</span>`).join("")}</div>
+        <h4 class="editorial-track-title">${label}</h4>
+        <p class="editorial-track-objective">${objective}</p>
+        <p class="editorial-track-question"><strong>Pergunta:</strong> ${question}</p>
+        <button type="button" class="btn ghost editorial-track-action" data-editorial-filter="${slot}" data-editorial-query="${query}">Explorar trilha</button>
+      </article>
+    `;
+  }).join("");
+
+  let section = document.getElementById("editorialHub");
+  if (!section) {
+    section = document.createElement("section");
+    section.id = "editorialHub";
+    section.setAttribute("aria-label", "Hub editorial DoD");
+    bar.insertAdjacentElement("afterend", section);
+  }
+
+  section.className = "grid editorial-hub";
+  section.innerHTML = `
+    <article class="card is-live editorial-hero-card">
+      <div class="tag">DOD EDITORIAL</div>
+      <h3 class="editorial-hero-title">Trilhas ativas</h3>
+      <p class="editorial-hero-copy">${escapeAttr(config?.brand?.positioning || "Laboratorio editorial em modo ativo")}</p>
+    </article>
+    ${cards}
+    <div id="editorialInsights" class="editorial-insights"></div>
+  `;
+
+  section.querySelectorAll("[data-editorial-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const slot = button.getAttribute("data-editorial-filter") || "all";
+      const query = button.getAttribute("data-editorial-query") || "";
+      const chip = document.querySelector(`.bar .chip[data-filter="${slot}"]`);
+      const search = document.getElementById("searchInput");
+
+      if (chip instanceof HTMLElement) chip.click();
+      if (search) {
+        search.value = query;
+        applyFilter();
+      }
+
+      const target = document.getElementById("cardsGrid") || document.getElementById("feed");
+      if (target && typeof target.scrollIntoView === "function") {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+}
+
+function applyEditorialConfig(config) {
+  const tracks = Array.isArray(config?.tracks) ? config.tracks.slice(0, 4) : [];
+  if (tracks.length === 0) return;
+
+  const heroKicker = document.querySelector('.hero-kicker');
+  if (heroKicker) heroKicker.textContent = "DOD • Editorial • Autonomia";
+
+  const heroDesc = document.getElementById("slideDesc");
+  if (heroDesc && config?.brand?.positioning) {
+    heroDesc.textContent = config.brand.positioning;
+  }
+
+  const statusEl = document.getElementById("status");
+  if (statusEl) statusEl.textContent = "editorial-live";
+
+  const search = document.getElementById("searchInput");
+  if (search) {
+    search.placeholder = "Buscar por trilha, hipotese, metodo, evidencia...";
+  }
+
+  const sourceSlots = ["neuro", "physio", "sport", "homeo"];
+  tracks.forEach((track, index) => {
+    const source = SOURCES[index];
+    if (!source) return;
+
+    source.id = sourceSlots[index] || source.id;
+    source.title = String(track.label || source.title || "");
+    source.desc = String(track.objective || source.desc || "");
+
+    const keywords = Array.isArray(track.keywords) ? track.keywords.filter(Boolean) : [];
+    if (keywords.length > 0) {
+      source.query = keywords.join(" ");
+      source.mesh = source.mesh || {};
+      source.mesh.primary = track.label || source.mesh.primary || source.title;
+      source.mesh.secondary = keywords.slice(0, 3);
+    }
+  });
+
+  const filterMap = {
+    neuro: tracks[0]?.label || "Neuro",
+    physio: tracks[1]?.label || "Physio",
+    sport: tracks[2]?.label || "Sport",
+    homeo: tracks[3]?.label || "Homeostase"
+  };
+
+  document.querySelectorAll(".bar .chip[data-filter]").forEach((chip) => {
+    const key = chip.dataset.filter || "";
+    if (key !== "all" && filterMap[key]) {
+      chip.textContent = filterMap[key];
+    }
+  });
+
+  if (detectPageKey() === "index") {
+    renderEditorialHub(config);
+    hydrateEditorialInsights();
+  }
+}
+
+
 function detectPageKey() {
   const rawPath = (window.location.pathname || "/").replace(/\/+$/, "");
   const lastSegment = (rawPath.split("/").pop() || "").toLowerCase();
@@ -335,6 +622,13 @@ function renderThematicPubMedGrid(pageKey, filterKey = "all") {
       </article>
     `;
   }).join("");
+
+  grid.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("error", () => {
+      img.onerror = null;
+      img.src = fallbackImage(img.alt || "DOD", 400, 250);
+    }, { once: true });
+  });
 }
 
 function initThematicPage(pageKey) {
@@ -364,6 +658,10 @@ function initThematicPage(pageKey) {
   if (featuredImg) {
     featuredImg.src = config.featured.img;
     featuredImg.alt = config.featured.title;
+    featuredImg.onerror = () => {
+      featuredImg.onerror = null;
+      featuredImg.src = fallbackImage(config.featured.title || "DOD", 560, 315);
+    };
   }
 
   const filtersContainer = document.querySelector(".pubmed-grid .filters");
@@ -392,8 +690,38 @@ function randomImage(seedBase, w = 1400) {
   return seededImage(`${seedBase}-${Date.now()}-${Math.random()}`, w);
 }
 
+function escapeSvgText(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function inlineSvgFallback(label, w = 900, h = 1200) {
+  const safeLabel = escapeSvgText(label || "DOD Performance").slice(0, 64);
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0B1220" />
+          <stop offset="100%" stop-color="#1F2937" />
+        </linearGradient>
+      </defs>
+      <rect width="${w}" height="${h}" fill="url(#g)" />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+            fill="#E5E7EB" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI"
+            font-size="${Math.max(18, Math.floor(w * 0.045))}">
+        ${safeLabel}
+      </text>
+    </svg>
+  `.trim();
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function fallbackImage(label, w = 900, h = 1200) {
-  return `https://placehold.co/${w}x${h}/0b1220/e5e7eb?text=${encodeURIComponent(label)}`;
+  return inlineSvgFallback(label, w, h);
 }
 
 async function fetchJson(url) {
@@ -1048,19 +1376,34 @@ if (pauseBtn) {
 
 const pageKey = detectPageKey();
 const hasThematicGrid = Boolean(document.getElementById("pubmedCardsGrid"));
-if (hasThematicGrid && pageKey !== "index") {
-  initThematicPage(pageKey);
+
+async function initializeSurface() {
+  mountEditorialToggle();
+
+  const editorialMode = shouldEnableEditorialMode();
+  if (editorialMode) {
+    const editorialConfig = await fetchEditorialConfig();
+    if (editorialConfig) {
+      applyEditorialConfig(editorialConfig);
+    }
+  }
+
+  if (hasThematicGrid && pageKey !== "index") {
+    initThematicPage(pageKey);
+  }
+
+  if (feedEl) {
+    renderFeed();
+    applyFilter();
+  }
+
+  if (document.getElementById("slide0") && document.getElementById("slide1")) {
+    updateSlider();
+    startSlider();
+  }
 }
 
-if (feedEl) {
-  renderFeed();
-  applyFilter();
-}
-
-if (document.getElementById("slide0") && document.getElementById("slide1")) {
-  updateSlider();
-  startSlider();
-}
+initializeSurface();
 
 function openNeuroModal() {
   if (document.getElementById("neuroModal")) return;
@@ -1694,14 +2037,14 @@ function openNeuroModal() {
 
   function fallbackCoverByTag(tags = []) {
     const values = tags.map(tag => String(tag).toLowerCase());
-    if (values.includes("sport")) return "/assets/synapse-neuro-3d.svg";
-    if (values.includes("homeostase")) return "/assets/hh-ap-wave.png";
-    if (values.includes("neuro")) return "/assets/hh-neuron.png";
-    if (values.includes("nature")) return "/assets/synapse-neuro-3d.svg";
-    if (values.includes("sky")) return "/assets/synapse-neuro-3d.svg";
-    if (values.includes("adaptacao")) return "/assets/hh-neuron.png";
-    if (values.includes("adaptação")) return "/assets/hh-neuron.png";
-    return "/assets/hh-ap-wave.png";
+    if (values.includes("sport")) return fallbackImage("Sport", 1200, 750);
+    if (values.includes("homeostase")) return fallbackImage("Homeostase", 1200, 750);
+    if (values.includes("neuro")) return fallbackImage("Neuro", 1200, 750);
+    if (values.includes("nature")) return fallbackImage("Nature", 1200, 750);
+    if (values.includes("sky")) return fallbackImage("Sky", 1200, 750);
+    if (values.includes("adaptacao")) return fallbackImage("Adaptacao", 1200, 750);
+    if (values.includes("adaptação")) return fallbackImage("Adaptacao", 1200, 750);
+    return fallbackImage("DOD", 1200, 750);
   }
 
   function meshIdFromValue(value = "") {
@@ -2146,10 +2489,20 @@ function openNeuroModal() {
       const card = CARDS.find(item => item.id === cardId);
       if (!card) return;
       const fallbackSrc = card.coverFallback || fallbackCoverByTag(card.tags || []);
+      const finalFallback = fallbackImage(card.title || "DOD", 1200, 750);
       img.addEventListener("error", function onImageError() {
-        if (img.src.endsWith(fallbackSrc)) return;
+        const stage = Number(img.dataset.fallbackStage || "0");
+        if (stage === 0 && img.src !== fallbackSrc) {
+          img.dataset.fallbackStage = "1";
+          img.src = fallbackSrc;
+          return;
+        }
+        if (stage <= 1 && img.src !== finalFallback) {
+          img.dataset.fallbackStage = "2";
+          img.src = finalFallback;
+          return;
+        }
         img.removeEventListener("error", onImageError);
-        img.src = fallbackSrc;
       });
     });
   }
@@ -2279,9 +2632,16 @@ function openNeuroModal() {
     const slots = getImageSlots(current);
     if (activeImageIndex >= slots.length) activeImageIndex = 0;
     const selected = slots[activeImageIndex];
+    modalImg.dataset.fallbackStage = "0";
     modalImg.onerror = () => {
+      const stage = Number(modalImg.dataset.fallbackStage || "0");
+      if (stage === 0) {
+        modalImg.dataset.fallbackStage = "1";
+        modalImg.src = selected.fallback;
+        return;
+      }
       modalImg.onerror = null;
-      modalImg.src = selected.fallback;
+      modalImg.src = fallbackImage(current.title || "DOD", 1200, 750);
     };
     modalImg.src = selected.src;
     modalImg.alt = `${current.title} - imagem ${activeImageIndex + 1}`;

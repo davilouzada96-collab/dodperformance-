@@ -1,0 +1,309 @@
+:root {
+  --sport-accent: #22c55e;
+  --sport-accent-2: #0f8e3f;
+}
+
+.sport-page {
+  padding-bottom: 108px;
+}
+
+.sport-hero {
+  margin-top: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(34, 197, 94, 0.16), transparent 65%),
+    linear-gradient(140deg, rgba(5, 10, 14, 0.95), rgba(7, 22, 13, 0.92));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+}
+
+.sport-kicker {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.sport-hero h1 {
+  margin: 8px 0 8px;
+  letter-spacing: 0.08em;
+  font-size: clamp(28px, 6vw, 46px);
+}
+
+.sport-lead {
+  margin: 0;
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.55;
+}
+
+.sport-hero-meta {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sport-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.84);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.sport-metrics {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.metric-card h2 {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.metric-value {
+  margin: 10px 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--sport-accent);
+}
+
+.metric-caption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sport-zones,
+.sport-protocols {
+  margin-top: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+}
+
+.zone-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zone-tab {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.84);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.zone-tab.is-active {
+  border-color: rgba(34, 197, 94, 0.62);
+  color: #f3fff7;
+  background: rgba(34, 197, 94, 0.16);
+}
+
+.zone-panel {
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 12, 8, 0.7);
+  padding: 14px;
+}
+
+.zone-panel h3 {
+  margin: 0 0 8px;
+}
+
+.zone-panel p {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.zone-panel ul {
+  margin: 0;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.sport-protocols h2 {
+  margin: 0 0 12px;
+}
+
+.protocol-card + .protocol-card {
+  margin-top: 10px;
+}
+
+.protocol-toggle {
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 11px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.protocol-toggle.is-open {
+  border-color: rgba(34, 197, 94, 0.58);
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.protocol-body {
+  margin-top: 8px;
+  border-left: 2px solid rgba(34, 197, 94, 0.64);
+  padding: 2px 0 2px 10px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bottom-nav {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.dock .nav-item[data-section="sport"].active {
+  color: var(--sport-accent);
+}
+
+.nav-item.active .nav-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 4px 12px;
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .sport-hero {
+    padding: 18px;
+  }
+
+  .sport-lead {
+    font-size: 14px;
+  }
+
+  .metric-value {
+    font-size: 24px;
+  }
+}
+
+/* Motion polish */
+.sport-page {
+  animation: sportPageFade 0.48s ease-out;
+}
+
+.sport-hero {
+  animation: sportRise 0.62s ease-out;
+}
+
+.sport-metrics .metric-card,
+.sport-zones,
+.sport-protocols {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: sportRiseIn 0.52s ease-out forwards;
+}
+
+.sport-metrics .metric-card:nth-child(1) { animation-delay: 0.08s; }
+.sport-metrics .metric-card:nth-child(2) { animation-delay: 0.14s; }
+.sport-metrics .metric-card:nth-child(3) { animation-delay: 0.2s; }
+.sport-zones { animation-delay: 0.24s; }
+.sport-protocols { animation-delay: 0.3s; }
+
+.metric-card,
+.zone-panel,
+.protocol-toggle,
+.zone-tab {
+  transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.metric-card:hover,
+.zone-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+}
+
+.zone-tab:focus-visible,
+.protocol-toggle:focus-visible {
+  outline: 2px solid rgba(34, 197, 94, 0.78);
+  outline-offset: 2px;
+}
+
+@keyframes sportPageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sportRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sportRiseIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sport-page,
+  .sport-hero,
+  .sport-metrics .metric-card,
+  .sport-zones,
+  .sport-protocols {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

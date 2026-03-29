@@ -47,8 +47,74 @@ async def script_js():
     return serve_public_file("script.js")
 
 
+@app.get("/neuro-page.css")
+async def neuro_page_css():
+    return serve_public_file("neuro-page.css")
+
+
+@app.get("/neuro-page.js")
+async def neuro_page_js():
+    return serve_public_file("neuro-page.js")
+
+
+@app.get("/sport-physio.css")
+async def sport_physio_css():
+    return serve_public_file("sport-physio.css")
+
+
+@app.get("/sport-physio.js")
+async def sport_physio_js():
+    return serve_public_file("sport-physio.js")
+
+
+@app.get("/physio-page.css")
+async def physio_page_css():
+    return serve_public_file("physio-page.css")
+
+
+@app.get("/physio-page.js")
+async def physio_page_js():
+    return serve_public_file("physio-page.js")
+
+
+@app.get("/health-page.css")
+async def health_page_css():
+    return serve_public_file("health-page.css")
+
+
+@app.get("/health-page.js")
+async def health_page_js():
+    return serve_public_file("health-page.js")
+
+
+@app.get("/editorial/trilhas.json")
+async def editorial_tracks():
+    return serve_public_file("content/editorial/trilhas.json")
+
+
+@app.get("/editorial/template-artigo.md")
+async def editorial_template():
+    return serve_public_file("content/editorial/template-artigo.md")
+
+
+@app.get("/editorial/calendario-12-semanas.md")
+async def editorial_calendar():
+    return serve_public_file("docs/calendario-editorial-12-semanas.md")
+
+
+@app.get("/editorial/playbook.md")
+async def editorial_playbook():
+    return serve_public_file("docs/playbook-editorial-dod.md")
+
+
 @app.get("/{slug}")
 async def spa_routes(slug: str):
-    if slug in {"neuro", "physio", "sport", "homeo", "health"}:
-        return serve_public_file("index.html")
+    if slug in {"neuro", "neuro-focus"}:
+        return serve_public_file("neuro.html")
+    if slug in {"sport", "sport-physio"}:
+        return serve_public_file("sport.html")
+    if slug in {"physio", "physio-core"}:
+        return serve_public_file("physio.html")
+    if slug in {"health", "homeo", "health-homeostasis"}:
+        return serve_public_file("health.html")
     raise HTTPException(status_code=404, detail="Not found")
