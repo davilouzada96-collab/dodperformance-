@@ -1,10 +1,5 @@
-/ /index.html 200
-/neuro /neuro.html 200
-/neuro-focus /neuro.html 200
-/physio /physio.html 200
-/physio-core /physio.html 200
-/sport /sport.html 200
-/sport-physio /sport.html 200
-/health /health.html 200
-/homeo /health.html 200
-/health-homeostasis /health.html 200
+/neuro-focus /neuro 302
+/physio-core /physio 302
+/sport-physio /sport 302
+/homeo /health 302
+/health-homeostasis /health 302
