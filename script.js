@@ -2074,12 +2074,7 @@ function openNeuroModal() {
   }
 
   function choosePreferredCover(imageA, imageB, fallbackCover) {
-    const first = String(imageA || "");
-    const second = String(imageB || "");
-    const firstIsMinimal = first.includes("/assets/minimal-cards/");
-    const secondIsRaster = /\.(png|jpe?g|webp)(\?|$)/i.test(second);
-
-    if (firstIsMinimal && secondIsRaster) return imageB || imageA || fallbackCover;
+    // Keep minimal SVG artwork as the primary card cover; PNG/JPG stays available in modal swap.
     return imageA || imageB || fallbackCover;
   }
 
