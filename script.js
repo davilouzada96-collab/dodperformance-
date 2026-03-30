@@ -2073,6 +2073,16 @@ function openNeuroModal() {
     return { question: "", finding: "", practical: "" };
   }
 
+  function choosePreferredCover(imageA, imageB, fallbackCover) {
+    const first = String(imageA || "");
+    const second = String(imageB || "");
+    const firstIsMinimal = first.includes("/assets/minimal-cards/");
+    const secondIsRaster = /\.(png|jpe?g|webp)(\?|$)/i.test(second);
+
+    if (firstIsMinimal && secondIsRaster) return imageB || imageA || fallbackCover;
+    return imageA || imageB || fallbackCover;
+  }
+
   function toUnifiedCard(raw = {}) {
     const meshRaw = raw.mesh || {};
     const meshUri = raw.meshUri || meshRaw.uri || "";
@@ -2098,7 +2108,7 @@ function openNeuroModal() {
       title: raw.title || "Card científico DOD",
       oneLiner: raw.oneLiner || "Resumo científico aplicado ao DOD.",
       tags,
-      cover: imageA,
+      cover: choosePreferredCover(imageA, imageB, fallbackCover),
       coverFallback: fallbackCover,
       imageA,
       imageB,
@@ -2162,7 +2172,7 @@ function openNeuroModal() {
       title: raw.title || raw.meshLabel || "Card científico DOD",
       oneLiner: raw.oneLiner || `Referência MeSH: ${raw.meshLabel || raw.meshTerm || "descriptor"} - indexado via MeSH RDF.`,
       tags,
-      cover: imageA,
+      cover: choosePreferredCover(imageA, imageB, fallbackCover),
       coverFallback: fallbackCover,
       imageA,
       imageB,
