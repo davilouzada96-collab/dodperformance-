@@ -2213,10 +2213,6 @@ function openNeuroModal() {
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#039;");
 
-  function isRasterAsset(value = "") {
-    return /\.(png|jpe?g|webp)(\?.*)?$/i.test(String(value || "").trim());
-  }
-
   function uniqueByNormalizedChunk(chunks = []) {
     const seen = new Set();
     return chunks
@@ -2474,26 +2470,13 @@ function openNeuroModal() {
         : "";
 
       const isCortexCard = normalizePriorityText(`${card.id || ""} ${card.title || ""}`).includes("cortex");
-      const hasEditorialRaster = isRasterAsset(card.cover) || isRasterAsset(card.imageB) || isRasterAsset(card.imageC);
-      const editorialKicker = escapeHtml((card.category || card.tags?.[0] || "DOD Science").toUpperCase());
-      const editorialSlide = escapeHtml(String(index + 1).padStart(2, "0"));
-      const editorialOverlay = hasEditorialRaster
-        ? `
-          <div class="card-editorial-overlay" aria-hidden="true">
-            <span class="card-editorial-kicker">${editorialKicker}</span>
-            <span class="card-editorial-sign">DOD PERFORMANCE</span>
-            <span class="card-editorial-slide">${editorialSlide}</span>
-          </div>
-        `
-        : "";
 
       return `
-        <article class="card is-live${isExposedCard(card) ? " card-exposed" : ""}${isCortexCard ? " card-cortex" : ""}${hasEditorialRaster ? " card-editorial-lite" : ""}"
+        <article class="card is-live${isExposedCard(card) ? " card-exposed" : ""}${isCortexCard ? " card-cortex" : ""}"
                  data-id="${escapeHtml(card.id)}"
                  data-title="${escapeHtml(card.title)}">
           <div class="card-cover">
             <img src="${escapeHtml(card.cover)}" alt="${escapeHtml(card.title)}" loading="lazy" />
-            ${editorialOverlay}
           </div>
           <div class="card-info">
             <div class="pillrow">${card.tags.map(tag => `<span class="pill">${escapeHtml(tag)}</span>`).join("")}</div>
