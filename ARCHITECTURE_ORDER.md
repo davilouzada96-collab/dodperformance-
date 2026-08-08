@@ -35,5 +35,4 @@ clinical-taxonomy.js ─────────────────┘
 2. Não recriar listas clínicas dentro de páginas ou componentes.
 3. Usar IDs estáveis para relações; labels são apresentação.
 4. Validar cobertura semântica e imports do pacote antes de publicar.
-5. A rota canônica é `/clinico/`; a cópia histórica em
-   `dodperoformance.main/clinico/` não integra o pacote publicado.
+5. A rota clínica canônica e única é `/clinico/`.

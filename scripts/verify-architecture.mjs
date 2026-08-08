@@ -18,7 +18,7 @@ import { researchCards } from "../scientific-library-data.js";
 import { evaluateClinicalInput, normalizeClinicalSearchTopic } from "../clinico/clinical-flow.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const appFiles = ["app.js", "clinico/app.js", "dodperoformance.main/clinico/app.js"];
+const appFiles = ["app.js", "clinico/app.js"];
 
 assert.equal(new Set(clinicalTopics.map((topic) => topic.id)).size, clinicalTopics.length, "ClinicalTopic.id duplicado");
 clinicalTopics.forEach((topic) => {
@@ -164,8 +164,8 @@ if (process.argv.includes("--public")) {
     .map((file) => resolve(root, file))
     .forEach(verifyHtmlReferences);
 
-  assert.ok(!existsSync(resolve(root, "public/dodperoformance.main/clinico")), "rota clínica histórica ainda foi publicada");
-  assert.ok(!existsSync(resolve(root, "public/clinico/output_data_1779051008.json")), "base local de machine learning ainda foi publicada");
+  assert.ok(!existsSync(resolve(root, "public/dodperoformance.main/clinico")), "rota clínica duplicada foi publicada");
+  assert.ok(!existsSync(resolve(root, "public/clinico/output_data_1779051008.json")), "base local obsoleta foi publicada");
   ["README_DEPLOY.md", "clinico-gate.js", "wrangler.toml"].forEach((file) => {
     assert.ok(!existsSync(resolve(root, "public/clinico", file)), `arquivo interno exposto no pacote: clinico/${file}`);
   });
